@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartTask - 智能任务管理应用</title>
+    <title>App Product</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --gray: #6c757d;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -24,728 +14,398 @@
         }
         
         body {
-            color: var(--dark);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
         }
         
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         
-        /* 导航栏样式 */
         header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--primary);
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        /* 英雄区域样式 */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .hero-text {
-            flex: 1;
-            padding-right: 50px;
-        }
-        
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-        }
-        
-        .hero-image {
-            flex: 1;
             text-align: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            transform: perspective(800px) rotateY(-10deg);
-            transition: transform 0.5s;
-        }
-        
-        .hero-image img:hover {
-            transform: perspective(800px) rotateY(0);
-        }
-        
-        /* 特性部分样式 */
-        .features {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 20px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 28px;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        /* 功能展示部分样式 */
-        .functionality {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        
-        .tabs {
-            display: flex;
-            justify-content: center;
             margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
         }
         
-        .tab-btn {
-            padding: 15px 30px;
-            background: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            margin: 0 10px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .tab-text {
-            flex: 1;
-            padding-right: 50px;
-        }
-        
-        .tab-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .tab-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .tab-image img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* 评价部分样式 */
-        .testimonials {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-        
-        .author-info h4 {
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        /* 下载部分样式 */
-        .download {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-        }
-        
-        .download h2 {
+        h1 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .download p {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
-        }
-        
-        .download-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .download-btn {
-            display: flex;
-            align-items: center;
-            background: white;
-            color: var(--dark);
-            padding: 15px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-5px);
-        }
-        
-        .download-btn i {
-            font-size: 24px;
-            margin-right: 10px;
-            color: var(--primary);
-        }
-        
-        /* 页脚样式 */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 70px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--success);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
+            color: #2c3e50;
             margin-bottom: 10px;
         }
         
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s;
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
         }
         
-        .footer-links a:hover {
-            color: white;
+        .folder-structure {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-family: monospace;
+            line-height: 1.8;
         }
         
-        .social-links {
+        .folder-structure h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .instructions {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .instructions ol {
+            padding-left: 25px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .product-list {
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+        .product-item {
             display: flex;
-            align-items: center;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-logo {
+            width: 120px;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #3498db, #2c3e50);
+            padding: 20px;
+        }
+        
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-content {
+            flex: 1;
+            padding: 25px;
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .product-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+        
+        .platform {
+            display: inline-block;
+            background: #3498db;
             color: white;
-            text-decoration: none;
-            transition: background 0.3s;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
         
-        .social-links a:hover {
-            background: var(--primary);
+        .product-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
         
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #adb5bd;
+        .feature-list {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .feature-list li strong {
+            color: #2c3e50;
+        }
+        
+        .download-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .version-info {
+            color: #7f8c8d;
             font-size: 0.9rem;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .hero-content, .tab-content.active {
-                flex-direction: column;
-            }
-            
-            .hero-text, .tab-text {
-                padding-right: 0;
-                margin-bottom: 40px;
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #2980b9;
+        }
+        
+        .coming-soon {
+            background: #95a5a6;
+        }
+        
+        .coming-soon:hover {
+            background: #7f8c8d;
+        }
+        
+        .contact {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .contact h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid #3498db;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .email-link:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .available {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .developing {
+            background: #ffecb3;
+            color: #f57c00;
         }
         
         @media (max-width: 768px) {
-            .download-buttons {
+            .product-item {
                 flex-direction: column;
-                align-items: center;
             }
             
-            .tabs {
-                flex-direction: column;
-                align-items: center;
+            .product-logo {
+                width: 100%;
+                padding: 15px;
             }
             
-            .tab-btn {
-                margin-bottom: 10px;
-                width: 80%;
+            .logo-placeholder {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .download-section {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-tasks"></i>
-                    <span>SmartTask</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#features">特性</a></li>
-                    <li><a href="#functionality">功能</a></li>
-                    <li><a href="#testimonials">评价</a></li>
-                    <li><a href="#download">下载</a></li>
-                </ul>
-                <a href="#download" class="btn">立即下载</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- 英雄区域 -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>智能任务管理，提升你的工作效率</h1>
-                    <p>SmartTask是一款革命性的任务管理应用，帮助您轻松组织工作、提高生产力，让您的生活更加井然有序。</p>
-                    <div class="hero-buttons">
-                        <a href="#download" class="btn">立即体验</a>
-                        <a href="#features" class="btn btn-outline">了解更多</a>
+    <div class="container">
+        <header>
+            <h1>Product</h1>
+            <p class="subtitle">eMouse&HPV</p>
+        </header>
+        
+        <div class="product-list">
+            <div class="product-item">
+                <div class="product-logo">
+                    <div class="logo-placeholder">
+                        <!-- 使用本地图片示例 -->
+                        <img src="my-right-click.png" alt="eMouse" onerror="this.src=''">
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="SmartTask应用界面">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 特性部分 -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>为什么选择SmartTask</h2>
-                <p>我们提供独一无二的功能，帮助您更高效地管理任务和项目</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                <div class="product-content">
+                    <div class="product-header">
+                        <h2 class="product-title">eMouse <span class="status-badge available">Available</span></h2>
+                        <span class="platform"><i class="fab fa-apple"></i> macOS</span>
                     </div>
-                    <h3>智能排序</h3>
-                    <p>基于AI算法自动优先处理重要任务，让您专注于关键工作</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>多设备同步</h3>
-                    <p>在手机、平板和电脑之间无缝同步，随时随地访问您的任务</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>数据可视化</h3>
-                    <p>通过直观的图表了解您的工作模式和时间分配情况</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 功能展示部分 -->
-    <section class="functionality" id="functionality">
-        <div class="container">
-            <div class="section-title">
-                <h2>强大的功能</h2>
-                <p>探索SmartTask如何改变您的工作方式</p>
-            </div>
-            <div class="tabs">
-                <button class="tab-btn active">任务管理</button>
-                <button class="tab-btn">团队协作</button>
-                <button class="tab-btn">进度跟踪</button>
-            </div>
-            <div class="tab-content active">
-                <div class="tab-text">
-                    <h3>直观的任务管理</h3>
-                    <p>轻松创建、组织和优先处理任务。设置截止日期、提醒和重复任务，确保您不会错过任何重要事项。</p>
-                    <p>通过标签和分类系统，您可以按照项目、优先级或自定义类别对任务进行分组。</p>
-                    <a href="#download" class="btn">开始使用</a>
-                </div>
-                <div class="tab-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="任务管理功能">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 评价部分 -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>用户评价</h2>
-                <p>看看我们的用户如何评价SmartTask</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "SmartTask完全改变了我的工作方式。我现在能够更好地管理我的时间，工作效率提高了至少40%。"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">L</div>
-                        <div class="author-info">
-                            <h4>李小明</h4>
-                            <p>项目经理</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "我一直苦苦寻找一个能够满足我所有需求的任务管理应用，直到发现了SmartTask。它的界面美观且功能强大。"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">Z</div>
-                        <div class="author-info">
-                            <h4>张小红</h4>
-                            <p>自由职业者</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "我们团队使用SmartTask后，项目交付时间平均缩短了25%。协作功能让沟通变得更加高效。"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">W</div>
-                        <div class="author-info">
-                            <h4>王建国</h4>
-                            <p>创业公司CEO</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 下载部分 -->
-    <section class="download" id="download">
-        <div class="container">
-            <h2>立即下载SmartTask</h2>
-            <p>可在iOS和Android设备上免费下载，开始您的高效之旅</p>
-            <div class="download-buttons">
-                <a href="#" class="download-btn">
-                    <i class="fab fa-apple"></i>
-                    <div>
-                        <div>下载自</div>
-                        <div>App Store</div>
-                    </div>
-                </a>
-                <a href="#" class="download-btn">
-                    <i class="fab fa-google-play"></i>
-                    <div>
-                        <div>下载自</div>
-                        <div>Google Play</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>SmartTask</h3>
-                    <p>让任务管理变得简单而高效，帮助您专注于真正重要的事情。</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>产品</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">功能</a></li>
-                        <li><a href="#">定价</a></li>
-                        <li><a href="#">案例研究</a></li>
-                        <li><a href="#">下载</a></li>
+                    
+                    <p class="product-description">
+                        「eMouse」A must for Mac installation! eMouse is the most powerful right-click menu tool on Mac, rich functions make your right-click menu efficient and fast, and help you greatly improve your MacOSX experience!。
+                    </p>
+                    
+                    <h3>Function</h3>
+                    <ul class="feature-list">
+                        <li> Right-click to create a new file (support customization)</li>
+                        <li> Open common directory (support customization)</li>
+                        <li> Open common software (support customization)</li>
+                        <li> Extract RAR archives</li>
+                        <li> go to terminal</li>
+                        <li> hidden files</li>
+                        <li> show files</li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>资源</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">博客</a></li>
-                        <li><a href="#">用户指南</a></li>
-                        <li><a href="#">视频教程</a></li>
-                        <li><a href="#">常见问题</a></li>
+                    
+                    <h3>System Requirements</h3>
+                    <ul class="feature-list">
+                        <li>macOS 11.0 Big Sur or later</li>
+                        <li>At least 256MB of available memory</li>
+                        <li>50MB of available storage space</li>
                     </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>公司</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">关于我们</a></li>
-                        <li><a href="#">联系我们</a></li>
-                        <li><a href="#">职业机会</a></li>
-                        <li><a href="#">隐私政策</a></li>
-                    </ul>
+                    
+                    <div class="download-section">
+                        <div class="version-info">v: 1.4.1</div>
+                        <a href="https://apps.apple.com/cn/app/%E6%88%91%E7%9A%84%E5%8F%B3%E9%94%AE-%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%89%A9%E5%B1%95/id1597745644?mt=12" class="download-btn">
+                            <i class="fas fa-download"></i> Donwload
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 SmartTask. 保留所有权利。</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // 简单的标签切换功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
             
-            tabBtns.forEach(function(btn, index) {
-                btn.addEventListener('click', function() {
-                    // 移除所有active类
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
+            <div class="product-item">
+                <div class="product-logo">
+                    <div class="logo-placeholder">
+                        <!-- 使用本地图片示例 -->
+                        <img src="hpv-assistant.png" alt="HPV" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none; width: 100%; height: 100%; justify-content: center; align-items: center; color: white; font-size: 2.5rem;">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-header">
+                        <h2 class="product-title">HPV <span class="status-badge available">Available</span></h2>
+                        <span class="platform"><i class="fab fa-apple"></i> iOS</span>
+                    </div>
                     
-                    // 添加active类到当前点击的元素
-                    btn.classList.add('active');
-                    // 这里简化处理，实际应用中应该有更复杂的内容切换逻辑
-                    if (index === 0) {
-                        tabContents[0].classList.add('active');
-                    }
-                });
-            });
-            
-            // 平滑滚动到锚点
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
+                    <p class="product-description">
+                        "HPV" Welcome to HPV, an application designed to hide private photos and videos in your phone's album. It offers dual-layer password encryption to safeguard your privacy and security. With HPV, you no longer need to worry about privacy leaks! We will always be by your side, protecting your privacy and helping you build a personalized private space.
+                    </p>
                     
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
+                    <h3>Function</h3>
+                    <ul class="feature-list">
+                        <li><strong>Hide Videos or Photos</strong> - Securely hide your videos and photos to prevent unauthorized access.</li>
+                        <li><strong>Share Photos and Videos</strong> - Easily share your hidden photos and videos anytime, anywhere.</li>
+                        <li><strong>No Storage Limit</strong> - Hide unlimited photos and videos with no storage restrictions.</li>
+                        <li><strong>Store Family Photos</strong> - Protect your family photos from unauthorized viewing.</li>
+                        <li><strong>Protect Important File Copies</strong> - Safely store copies of your driver's license, ID card, and credit cards.</li>
+                        <li><strong>Secondary Space</strong> - Create a secondary space to access different sets of photos and videos for enhanced security.</li>
+                        <li><strong>Change App Icon</strong> - Disguise the app with alternative icons to make it look like other applications.</li>
+                        <li><strong>Intruder Alert</strong> - Monitor and alert against intruders to keep your photos and videos secure.</li>
+                    </ul>
                     
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+                    <div class="download-section">
+                        <div class="version-info">v: 1.0.0 </div>
+                        <a href="https://apps.apple.com/cn/app/%E6%88%91%E7%9A%84%E5%8F%B3%E9%94%AE-%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%89%A9%E5%B1%95/id1597745644?mt=12" class="download-btn">
+                            <i class="fas fa-download"></i> Donwload
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <h2>Contact Us</h2>
+            <a href="mailto:a26225737@gmail.com" class="email-link">
+                <i class="fas fa-envelope"></i> a26225737@gmail.com
+            </a>
+        </div>
+    </div>
 </body>
 </html>
